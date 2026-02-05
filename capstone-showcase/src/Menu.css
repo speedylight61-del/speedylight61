@@ -1,0 +1,276 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
+:root {
+  --nav-item-text-color: rgb(49, 49, 49);
+  --nav-edge-padding: 1.5rem;
+}
+
+.asu-logo-nav {
+  width: 200px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.asu-branding .asu-logo
+{
+  height: 60px;
+}
+.asu-branding {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #2d2e30;
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+}
+.asu-branding .asu-logo {
+  height: 60px;
+}
+.selected-semester-label {
+  color: black;
+  margin-top: 6px;
+}
+
+.menu-item {
+  color: black;
+  /* margin: 10px; */
+  color: black;
+  text-decoration-line: none;
+  /* padding: 4px; */
+  /* display: inline-block; */
+  /* width: fit-content; */
+}
+
+.semester-selector label {
+  color: black;
+}
+
+.semesterDropdown {
+  border: none;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: 100%;
+  
+}
+
+.nav-container {
+  display: flex;
+  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 10px; */
+  position: relative;
+  width: 100%;
+  height: 55px;
+}
+
+.parent {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 102;
+  box-shadow: 0 0 60px rgba(50, 50, 93, 0.18);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.nav-mobile-dropdown {
+  position: absolute;
+  top: 53px;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 100;
+  width: 100%;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  /* font-size: 1.05rem; */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+li {
+  list-style: none;
+}
+
+.burger-menu {
+  background: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.bun {
+  position: absolute;
+  left: 50%;
+  background: black;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.patty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.desktop-menu {
+  display: none;
+  flex-direction: row;
+  color: black;
+  justify-content: space-between;
+  align-items: center;
+  width: 66.7%;
+}
+/* Department dropdown hidden by default, shown on hover */
+.department-button {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 8px;
+  box-sizing: border-box;
+  color: var(--nav-item-text-color);
+  display: flex;
+  text-wrap: nowrap;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+.department-button:hover,
+.department-button:focus {
+  color: black;
+}
+
+.department-button:hover .arrow {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+  color: black;
+}
+
+.department-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 240px;
+  border-radius: 4px;
+  padding: 8px 0;
+}
+
+.special-link {
+  color: var(--nav-item-text-color);
+  text-decoration: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.special-link:hover {
+  color: black;
+}
+
+.department-button:hover .department-dropdown,
+.department-button:focus-within .department-dropdown {
+  display: block;
+}
+
+.department-dropdown .menu-item {
+  display: block;
+  padding: 8px 16px;
+  color: var(--nav-item-text-color);
+  text-decoration: none;
+  transition: all 0.2s;
+  /* font-size: 1.25rem; */
+}
+/* .menu-item a {
+  font-size: 1.25rem;
+} */
+.department-dropdown .menu-item:hover,
+.department-dropdown .menu-item .active {
+  background: #f0f0f0;
+  color: #000;
+}
+
+.department-dropdown .menu-item:hover {
+  cursor: pointer;
+}
+
+.nav-mobile-dropdown .menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-third {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 33.33%;
+  padding-left: var(--nav-edge-padding);
+  box-sizing: border-box;
+}
+.center-third {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  box-sizing: border-box;
+  gap: 20px;
+}
+.right-third {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  padding-right: var(--nav-edge-padding);
+  box-sizing: border-box;
+}
+
+@media (min-width: 913px) {
+  .burger-menu {
+    display: none;
+  }
+  .nav-mobile-dropdown {
+    display: none;
+  }
+
+  .desktop-menu {
+    display: flex;
+  }
+  .semesterDropdown {
+    font-size: 1.05rem;
+  }
+}

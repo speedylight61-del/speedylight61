@@ -1,0 +1,378 @@
+
+/* Project Details Container */
+.project-details-container {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+}
+
+/* Back Button */
+.back-button-container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8C1D40;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.back-button:hover {
+  color: var(--asu-gold);
+}
+
+/* Project Header */
+.project-header {
+box-sizing: border-box;
+
+  background: linear-gradient(to right, #8C1D40, #5c0f28);
+  border-radius: 8px;
+  padding: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-header-content {
+  max-width: 800px;
+}
+
+.project-badge {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.position-badge,
+.semester-badge,
+.department-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.position-badge {
+  background-color: #FFC627;
+  color: #333;
+}
+
+.semester-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.department-badge {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.project-title {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.05rem;
+}
+.title-in-project-details 
+{
+  color: white !important;
+}
+.project-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Project Content */
+.project-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.project-gallery
+{
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .project-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+/* Image Gallery */
+.project-gallery {
+  height: fit-content;
+  position: sticky;
+  border-radius: 8px;
+
+  top: 120px;
+}
+
+
+.gallery-image-container {
+  position: relative;
+  min-height: 450px;
+  max-height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-height: 500px;
+}
+.single-image
+{
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.gallery-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.gallery-control-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.gallery-pagination {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.placeholder-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  color: #999;
+  background-color: #eaeaea;
+}
+
+/* Project Info */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-section {
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.section-title {
+  color: #8C1D40;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #FFC627;
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: white;
+}
+
+/* Team Members */
+.team-members-project-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  
+}
+
+.team-member-project-details{
+    border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+    background-color: #f5f5f5;
+color: black;
+  border-radius: 8px;
+display: flex;
+align-items: center;
+
+}
+.team-member-project-details:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.member-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Project Resources */
+.project-resources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: white;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #8C1D40;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  transition: background-color 0.2s;
+}
+
+.resource-link:hover {
+  background-color: #e0e0e0;
+}
+
+.no-resources {
+  color: white;
+  font-style: italic;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.share-icon {
+  cursor: pointer;
+  padding:0;
+  transition: all 0.2s;
+  background-color: #f5f5f5;
+  color:black;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-icon:hover {
+  transform: scale(1.1);
+  background-color: #e0e0e0;
+}
+
+.share-icon:hover svg {
+  stroke: #8C1D40;
+}
+
+/* ASU Branding */
+.asu-branding {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #2d2e30;
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+
+/* Project Not Found */
+.project-not-found {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.project-not-found h2 {
+  color: #8C1D40;
+  margin-bottom: 1rem;
+}
+
+.project-not-found .back-button {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .project-gallery {
+    position: static !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-title-detail {
+    font-size: 2rem;
+  }
+  .gallery-image-container {
+    min-height: 300px;
+  }
+  .team-members {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .project-gallery {
+    position: static !important;
+    top: auto !important;
+  }
+  .project-gallery 
+  {
+    position: static !important;
+  }
+}

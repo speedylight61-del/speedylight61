@@ -1,0 +1,267 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /*width: 100%;*/
+  /*background-color: #f5f5f5 !important;*/
+  padding: 40px;
+  /*position: relative;
+  z-index: 1;*/
+}
+
+.form-container {
+  background-color: white;
+  color: black;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.form-header {
+  margin-bottom: 20px;
+  padding: 20px 20px 10px 20px;
+  background-color: #8c1d40;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+
+.form-title {
+  margin: 0;
+  color: white;
+  font-size: 40px;
+  font-family: "Georgia", serif;
+}
+
+.form-description a {
+  color: #ffc627; 
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.form-description a:hover {
+  color: #ffd84d; 
+  text-decoration: underline;
+}
+
+.form-box {
+  padding: 10px 28px 0px 10px;
+  margin: 5px auto;
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea {
+  background-color: white;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc; 
+  color : black;
+  width: 100%;  
+  box-sizing: border-box;  
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: black;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ffc627;
+  box-shadow: 0 0 5px rgba(255, 198, 39, 0.5);
+  outline: none;
+}
+
+input[type="radio"] {
+  width: auto;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  background-color: white;
+}
+
+.youtube-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* upload sections */
+.contentPoster,
+.contentTeam {
+  margin-top: 15px;
+}
+
+.contentPoster .title,
+.contentTeam .title {
+  font-weight: 600;
+}
+
+.image-upload {
+  margin-top: 8px;
+}
+
+.file-uploaded {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.submit-button {
+  display: block;             
+  width: 90%;                 
+  margin: 20px auto;
+  background-color: #8c1d40;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #611029;
+  transform: translateY(-1px);
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(140, 29, 64, 0.3);
+}
+
+small {
+  display: block;
+  margin-top: -5px;
+  color: #4a4a4a;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
+  font-weight: bold;
+}
+
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:  rgba(140, 29, 64, 1) 55%;
+  color: white; 
+  border: 1px solid rgba(255, 198, 39, 0.5);
+  border-radius: 4px;
+  width: 90%;        
+  max-width: 320px; 
+  padding: 15px; 
+  font-size: 16px; 
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ok-button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: rgba(255, 198, 39, 1) 25%; 
+  color: black; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ok-button:hover {
+  background-color: rgba(255, 198, 39, 1) 25%; 
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .form-container {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-header {
+    padding: 15px 10px 8px 10px;
+  }
+
+  .form-title {
+    font-size: 26px;    
+  }
+
+  .form-header p {
+    font-size: 0.85rem;
+  }
+
+  .form-box {
+    padding: 8px 0 0 0;
+    margin: 4px 0;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 0.9rem;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .radio-group {
+    gap: 8px;
+  }
+
+  .submit-button {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 22px;
+  }
+
+  .success-message {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

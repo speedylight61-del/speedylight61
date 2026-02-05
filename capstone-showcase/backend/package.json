@@ -1,0 +1,30 @@
+{
+  "name": "capstone-showcase-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ProductionServer.js",
+  "scripts": {
+    "start": "node ProductionServer.js",
+    "start:prod": "node ProductionServer.js",
+    "start:local": "node localServer.js",
+    "dev": "nodemon localServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ASU Capstone Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

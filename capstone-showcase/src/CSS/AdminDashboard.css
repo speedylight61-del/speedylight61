@@ -1,0 +1,252 @@
+.admin-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
+.admin-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  height: 4rem;
+  /* padding: 0 20px; */
+  background-color: #ecf0f1;
+  color: white;
+  flex-shrink: 0; 
+  box-sizing: border-box;
+}
+
+.admin-dashboard-header .title {
+  font-size: 1.8rem; 
+  font-weight: bold;
+  flex: 0 0 250px; 
+  padding: 20px;
+  background-color: #2c3e50;
+  text-align: left;
+
+}
+
+.admin-dashboard-header .menu {
+  display: none; 
+  cursor: pointer;
+}
+
+.admin-dashboard-body {
+  display: flex;
+  flex: 1; 
+  overflow: hidden; 
+}
+
+
+.admin-dashboard-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 250px; 
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out; 
+  
+}
+
+.admin-dashboard-navbar-options {
+  width: 100%;
+}
+
+.admin-dashboard-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.admin-dashboard-navbar-items {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  color: white !important;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.admin-dashboard-navbar-items:hover {
+  background-color: #34495e;
+}
+
+.admin-dashboard-main {
+  flex: 1; 
+  padding: 20px;
+  background-color: #ecf0f1;
+  overflow-y: auto; 
+}
+
+.admin-dashboard-logout-container {
+  width: 100%;
+}
+
+.admin-dashboard-logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.admin-dashboard-logout-button:hover {
+  background-color: #e74c3c;
+}
+
+.admin-logout-shade {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.admin-logout-msg {
+ color: black;
+ font-size: 24px;
+ background-color: white;
+ padding: 20px;
+ border-radius: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ max-width: 80%;
+}
+.admin-logout-icon {
+ margin-right: 10px;
+ color: #f39c12;
+ font-size: 75px;
+ vertical-align: middle;
+}
+.admin-logout-msg p {
+ margin: 10px 0;
+ font-size: large;
+}
+.admin-logout-yes,
+.admin-logout-no {
+ margin: 10px;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ font-size: 16px;
+ transition: background-color 0.3s;
+ background-color: #3498db;
+ color: white;
+ width: 80%;
+}
+.admin-logout-yes:hover,
+.admin-logout-no:hover {
+ background-color: #2980b9;
+}
+
+.mobile-overlay {
+  display: none; 
+}
+
+@media screen and (max-width: 768px) {
+  .admin-dashboard-header .menu {
+    display: block; 
+  }
+  .admin-dashboard-main 
+  {
+    min-height: min-content;
+  }
+  .admin-dashboard-header 
+  {
+    padding: 0 20px;
+    background-color: #2c3e50;
+  }
+
+  .admin-dashboard-navbar {
+    position: absolute;
+    top: 4rem; 
+    left: -250px; 
+    height: calc(100vh - 4rem) !important;
+    z-index: 100;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0px 10px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+   
+  }
+
+  .admin-nav-show {
+    left: 0; 
+  }
+  
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 99; 
+  }
+}
+
+
+.loading-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; 
+}
+.loading-spinner {
+  border: 8px solid #f3f3f3; 
+  border-top: 8px solid #3498db; 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+.loading-spinner2 {
+  border: 8px solid #f3f3f3; 
+  border-top: 8px solid #3498db; 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

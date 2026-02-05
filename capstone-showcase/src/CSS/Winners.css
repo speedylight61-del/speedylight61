@@ -1,0 +1,143 @@
+:root {
+  --primary-color: #8C1D40;
+  --secondary-color: #F5F9FC;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.winners__form-container {
+  /* background-color: white; */
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: calc(100vh - 73.73px);
+  
+}
+
+.winners__showcase-title {
+  margin-top: 2rem;
+  color: #8C1D40;
+  font-family: sans-serif;
+  padding-top: 1rem;
+  z-index: 1;
+}
+
+.winners__showcase-desc {
+  color: black;
+  z-index: 1;
+}
+
+.winners__filter-bar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.winners__left-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+  flex: 1;
+}
+
+.winners__showcase-desc {
+  color: black;
+  z-index: 1;
+}
+
+.winners__form {
+  display: flex;
+  width: 90%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  z-index: 1;
+
+  /* background: #ffffff40; */
+  background-color: white;
+
+  padding: .1rem .5rem;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 12px rgba(0,0,0,0.08); */
+  box-shadow: 0 0 60px rgba(50, 50, 93, 0.18);
+
+  text-align: left;
+  margin-bottom: 80px;
+  align-items: center !important;
+
+}
+
+.winners__form .winners__item-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  padding-bottom: 8px;
+}
+
+.winners__form label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #8C1D40;
+}
+
+.winners__form .winners__filter-param {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  border: 1px solid #e9e9e9;
+  /* background: white; */
+  color: black;
+}
+
+.winners__search-input {
+  flex: 1;
+  background: var(--secondary-color);
+  color: black;
+}
+
+.winners__department-dropdown {
+  background: white;
+}
+
+.winners__button-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  /* margin-left: 12px; */
+  gap: 12px;
+}
+
+.winners__button-container>.winners__form-button {
+  padding: 8px 28px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  border: 1px solid #e9e9e9;
+  /* font-weight: 600; */
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.winners__button-container>.winners__form-button:hover {
+  background: #8C1D40;
+  color: white;
+}
+
+.winners__z-index {
+  z-index: 1;
+  background: #8C1D40;
+  color: white;
+}
+
+.winners__z-index {
+  z-index: 1;
+}

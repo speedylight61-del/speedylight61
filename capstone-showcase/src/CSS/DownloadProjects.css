@@ -1,0 +1,132 @@
+
+/* ASU Maroon and Gold */
+:root {
+  --asu-maroon: #8c1d40;
+  --asu-gold: #ffc627;
+}
+
+.download-projects-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 10px;
+}
+
+.download-projects-card {
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.download-projects-logo {
+  width: 120px;
+  margin-bottom: 1.2rem;
+}
+
+.download-projects-title {
+  color: var(--asu-maroon);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.download-projects-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.download-projects-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.download-projects-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.download-projects-field input[type='date'] {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--asu-maroon);
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+}
+.download-projects-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0);
+  size: 3px;
+}
+
+.download-projects-field label {
+  font-weight: 600;
+  color: var(--asu-maroon);
+  margin-bottom: 0.3rem;
+}
+
+.download-projects-field select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--asu-maroon);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  color: #222;
+  transition: border 0.2s;
+}
+.download-projects-field select:focus {
+  outline: none;
+  border-color: var(--asu-gold);
+}
+
+.download-projects-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--asu-maroon);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(140,29,64,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+.download-projects-btn:hover {
+  background: var(--asu-gold);
+  color: var(--asu-maroon);
+}
+
+.download-projects-note {
+  margin-top: 1.5rem;
+  color: #444;
+  font-size: 0.98rem;
+  background: #fffbe6;
+  border-left: 4px solid var(--asu-gold);
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}

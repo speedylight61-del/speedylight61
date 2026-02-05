@@ -1,0 +1,176 @@
+.projects-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.project-catalog .projects-grid,
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 8px 24px 40px;
+}
+
+@media (max-width: 1350px) {
+  .project-catalog .projects-grid,
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-catalog .projects-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .project-catalog .projects-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-catalog .project-card,
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+  overflow: hidden;
+  padding: 0;
+  transition: transform .16s ease, box-shadow .16s ease;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  min-height: 360px;
+  height: 460px;
+}
+
+.project-catalog .project-card:hover,
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+.project-catalog .youtube-thumbnail,
+.youtube-thumbnail {
+  display: block;
+  margin: 14px auto 8px;
+  width: 90%;
+  height: 160px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.project-catalog .project-details,
+.project-details {
+  padding: 6px 18px 16px;
+  text-align: center;
+}
+
+.project-catalog .project-title,
+.project-title {
+  margin: 0px 0 6px;
+  color: #8c1d40;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.22;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.project-catalog .project-description,
+.project-description {
+  margin: 4px auto 10px;
+  max-width: 92%;
+  color: #60656b;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-style: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-catalog .project-meta,
+.project-meta {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.project-catalog .project-meta p,
+.project-meta p {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.project-catalog .chips,
+.chips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.project-catalog .semester-tag,
+.project-catalog .project-chip,
+.semester-tag,
+.project-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.project-catalog .semester-tag,
+.semester-tag {
+  background: #F4B400;
+  color: #111;
+}
+
+.project-catalog .project-chip,
+.project-chip {
+  background: #8c1d40;
+  color: #fff;
+}
+
+.text-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.text-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

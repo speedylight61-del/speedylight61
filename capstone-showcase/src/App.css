@@ -1,0 +1,86 @@
+#root {
+  /* margin: 0 auto; */
+  /* padding: 0 2rem 2rem 2rem; */
+  text-align: center;
+  max-width: 100vw;
+
+  /* max-width: 1280px; */
+  height: 100vh;
+  width: 100vw;
+  /* display: flex;
+  flex-direction: column; */
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) white;
+  /* outline: 1px solid red; */
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: white; /* sets the track to white */
+}
+
+.content {
+  /* margin-top: 60px; */
+  transition: margin-left 0.3s ease;
+  min-width: 100%;
+  max-width: 1280px;
+  overflow-x: hidden;
+  background-color: white;
+ 
+  flex-grow: 1 ;
+  /* background-color: white; */
+}
+
+.side-menu .content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

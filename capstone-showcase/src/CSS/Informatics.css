@@ -1,0 +1,121 @@
+.informatics-page-body {
+  font-family: Arial, sans-serif;
+}
+
+.informatics {
+  margin: 0;
+  padding-top: 20px;
+  text-align: center;
+  transition: margin-left 0.3s ease;
+}
+
+.informatics.compressed {
+  margin-left: 270px;
+}
+
+.informatics .header-background {
+  background-image: url("../assets/infBanner.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px;
+  color: white;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.header-background h1,
+.header-background h2,
+.header-background h3 {
+  margin: 10px 0;
+}
+
+.survey-form-button {
+  background-color: #8c1d40;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.survey-form-button:hover {
+  background-color: #611029;
+}
+
+.informatics .asu-logo {
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  height: auto;
+}
+
+.informatics .title-container {
+  text-align: center;
+  color: black;
+}
+
+.informatics .main-page-title {
+  font-size: clamp(2vw, 5vw, 20vw);
+  font-weight: 700;
+  color: #222222;
+  line-height: 1;
+}
+
+
+.content-area {
+  background: #d3d3d3;
+  width: 100%;
+  overflow-y: auto;
+  padding-top: 20px;
+}
+
+.survey-form-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+} 
+
+.more-projects-button{
+    background-color: #8c1d40;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.more-projects-button:hover {
+  background-color: #611029;
+}
+
+.project-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-title-link {
+  color: #8c1d40 !important;
+  text-decoration: underline !important;
+  font-weight: bold;
+  text-underline-offset: 2px;
+}
+
+.project-title-link:hover {
+  color: #611029 !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px;
+}

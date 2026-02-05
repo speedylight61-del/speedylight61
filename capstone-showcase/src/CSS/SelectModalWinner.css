@@ -1,0 +1,24 @@
+.modal-winner-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+}
+.modal-winner-form p {
+  text-align: left;
+  width: 100%;
+  color: black;
+  font-size: medium;
+  font-weight: 500;
+}
+.modal-winner-form h3 
+{
+    margin: 0;
+    font-size: large;
+    font-weight: 600;
+    color: var(--asu-maroon);
+    width: 100%;
+    text-align: left;
+
+}

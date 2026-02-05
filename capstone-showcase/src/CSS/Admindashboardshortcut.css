@@ -1,0 +1,130 @@
+:root {
+  --asu-maroon: #8c1d40;
+  --asu-gold: #ffc627;
+}
+.admin-dashbord-shortcut-title{
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--asu-maroon);
+  text-align: center;
+  position: relative;
+  
+}
+
+.admin-dashboard-shortcut-title-glass 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotate(-90deg) translate(100%, 0%);
+  }
+
+
+.glass-card {
+  width: 240px;
+  height: 360px;
+  background: rgba(94, 82, 82, 0.308);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 24px 12px rgba(255, 255, 255, 1.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+.admin-dasboard-shortcut-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  justify-items: center;
+  row-gap: 1rem;
+  /* padding: 20px; */
+  color: black;
+}
+
+.admin-dasboard-shortcut-grid-item {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+    justify-content: center;
+  gap: 1rem;
+  /* padding: 20px; */
+  background-color: 	#BEBEBE;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 90%;
+  height: 138px;
+  box-sizing: border-box;
+}
+.admin-dasboard-shortcut-grid-item p 
+{
+    font-size: 18px;
+    margin: 0;
+}
+.admin-dasboard-shortcut-grid-item:hover {
+  transform: scale(1.05);
+  color: var(--asu-maroon);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+ fieldset {
+      width: fit-content;
+      height: min-content;
+      border: 3px solid #333;
+      border-radius: 10px;   /* make it circular */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      margin: 50px auto;
+      font-size: 1.8rem
+    }
+
+    legend {
+      /* font-weight: ; */
+      padding: 0 10px;
+            font-size: small;
+
+    }
+@media (max-width: 900px) {
+  .admin-dasboard-shortcut-grid-container {
+    grid-template-columns: 1fr 1fr; 
+  }
+}

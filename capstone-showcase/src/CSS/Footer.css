@@ -1,0 +1,114 @@
+
+footer {
+  background: rgb(255,198,39);
+  /*&background: linear-gradient(90deg, rgba(255,198,39,1) 0%, rgba(255,198,39,1) 23%, rgba(140,29,64,1) 71%);*/
+  background: linear-gradient(90deg, rgba(255,198,39,1) 0%, rgba(255,198,39,1) 13%, rgba(140,29,64,1) 55%);
+  margin-top:100px;
+  height: auto;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer label{
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer a:hover {
+  color: #FFC627;
+  text-decoration: none;
+}
+
+footer h4{
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+  text-align: left;
+}
+
+footer ul{
+  list-style-type: none;
+  margin: auto;
+  padding: 0; 
+  text-align: left;
+}
+footer li a{
+  white-space: nowrap;
+}
+
+h4 {
+  margin-bottom: 5px; 
+}
+
+.row1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 20px;
+}
+
+.col {
+  padding: 0 15px;
+}
+
+.table td{
+  width: 25%;
+  vertical-align: top;
+  padding: 0 15px;
+}
+
+.asu-logo-footer {
+  width: clamp(120px, 300px, 300px);
+  height: auto; 
+}
+
+input[type="email"] {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #FFC627; 
+  padding: 5px; 
+  border-radius: 5px; 
+}
+
+.row2 .column1 {
+  font-size: 15px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.email-box {
+  background-color: black; 
+  color: white; 
+  padding: 1px 12px; 
+  border-radius: 4px; 
+  display: inline-block; 
+  margin-top: 2px; 
+  text-align: center; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.email-box:hover {
+  background-color: #FFC627; /* Change background to gold on hover */
+  transform: scale(1.15); /* Slight zoom-in effect on hover */
+}
+
+.email-box a {
+  color: white; 
+  text-decoration: none; 
+}
+
+.email-box:hover a {
+  color: black; /* Black text when background changes to gold */
+}
+  
