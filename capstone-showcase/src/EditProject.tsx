@@ -1,5 +1,5 @@
 import "./CSS/EditProject.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProjectObj } from "./SiteInterface";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
@@ -11,49 +11,86 @@ export default function EditProject({
   project: ProjectObj;
   closeFunc: (changeMap?: Map<string, string> | null) => void;
 }) {
-  const initialMembers = project.teamMemberNames
-    ? project.teamMemberNames.split(", ")
-    : [];
-  const [members, setMembers] = useState(initialMembers);
-
-  const initialMajors = project.teamMemberMajors
-    ? project.teamMemberMajors.split(", ")
-    : [];
-  const [majors, setMajors] = useState(initialMajors);
-
-  const initialPhotos = project.teamMemberPhotos
-    ? project.teamMemberPhotos.split(", ")
-    : [];
-  const [photos, setPhotos] = useState(initialPhotos);
-
-  const [changeMap, setChangeMap] = useState<Map<string, string>>(new Map());
   const { isSignedIn, isTokenValid, token } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect if not authenticated
   useEffect(() => {
     if (!isSignedIn || !isTokenValid()) {
       navigate("/admin");
     }
-  }, [isSignedIn, isTokenValid, navigate, token]);
+  }, [isSignedIn, isTokenValid, navigate]);
+
+  // Helpers
+  const splitList = (value?: string | null) =>
+    value
+      ? value
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean)
+      : [];
+
+  // Initialize arrays once per project (prevents weird stale state if project changes)
+  const initialMembers = useMemo(
+    () => splitList(project.teamMemberNames),
+    [project.teamMemberNames]
+  );
+  const initialMajors = useMemo(
+    () => splitList(project.teamMemberMajors),
+    [project.teamMemberMajors]
+  );
+  const initialPhotos = useMemo(
+    () => splitList(project.teamMemberPhotos),
+    [project.teamMemberPhotos]
+  );
+
+  const [members, setMembers] = useState<string[]>(initialMembers);
+  const [majors, setMajors] = useState<string[]>(initialMajors);
+  const [photos, setPhotos] = useState<string[]>(initialPhotos);
+
+  // If the user opens Edit on a different project without a full remount, sync state
+  useEffect(() => {
+    setMembers(initialMembers);
+  }, [initialMembers]);
+  useEffect(() => {
+    setMajors(initialMajors);
+  }, [initialMajors]);
+  useEffect(() => {
+    setPhotos(initialPhotos);
+  }, [initialPhotos]);
+
+  const [changeMap, setChangeMap] = useState<Map<string, string>>(new Map());
+
   const updateChangeMap = (key: string, value: string) => {
     setChangeMap((prev) => {
       const newMap = new Map(prev);
       const originalValue = project[key as keyof ProjectObj];
 
-      if (value !== originalValue) {
+      // Normalize original value to string for comparison
+      const originalString =
+        originalValue === null || originalValue === undefined
+          ? ""
+          : String(originalValue);
+
+      if (value !== originalString) {
         newMap.set(key, value);
       } else {
         newMap.delete(key);
       }
-      console.log("ChangeMap Updated:", Array.from(newMap.entries()));
 
       return newMap;
     });
   };
 
   const addMember = () => {
-    setMembers([...members, ""]);
-    setMajors([...majors, ""]);
-    setPhotos([...photos, ""]);
+    setMembers((prev) => [...prev, ""]);
+    setMajors((prev) => [...prev, ""]);
+    setPhotos((prev) => [...prev, ""]);
+
+    // Mark as changed so backend sees it even before typing
+    updateChangeMap("teamMemberNames", [...members, ""].join(", "));
+    updateChangeMap("teamMemberMajors", [...majors, ""].join(", "));
+    updateChangeMap("teamMemberPhotos", [...photos, ""].join(", "));
   };
 
   const updateMember = (index: number, value: string) => {
@@ -79,54 +116,58 @@ export default function EditProject({
 
   const removeMember = (index: number) => {
     const newMembers = members.filter((_, i) => i !== index);
-    setMembers(newMembers);
-    updateChangeMap("teamMemberNames", newMembers.join(", "));
-
     const newMajors = majors.filter((_, i) => i !== index);
-    setMajors(newMajors);
-    updateChangeMap("teamMemberMajors", newMajors.join(", "));
-
     const newPhotos = photos.filter((_, i) => i !== index);
+
+    setMembers(newMembers);
+    setMajors(newMajors);
     setPhotos(newPhotos);
+
+    updateChangeMap("teamMemberNames", newMembers.join(", "));
+    updateChangeMap("teamMemberMajors", newMajors.join(", "));
     updateChangeMap("teamMemberPhotos", newPhotos.join(", "));
   };
 
   const handleCloseEvent = (changes?: Map<string, string>) => {
     if (changeMap.size > 0) {
-      if (
-        !window.confirm(
-          "You have unsaved changes. Are you sure you want to close?"
-        )
-      )
-        return;
+      const ok = window.confirm(
+        "You have unsaved changes. Are you sure you want to close?"
+      );
+      if (!ok) return;
     }
     closeFunc(changes || null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (changeMap.size === 0) {
       closeFunc();
       return;
     }
+
     const API_BASE_URL =
       import.meta.env.PROD ? "/api" : "http://localhost:3000/api";
 
-    const header = {
+    const headers: Record<string, string> = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     };
+    if (token) headers.Authorization = `Bearer ${token}`;
+
     const res = await fetch(`${API_BASE_URL}/${project.id}/update`, {
       method: "PUT",
-      headers: header,
+      headers,
       body: JSON.stringify({ ...Object.fromEntries(changeMap) }),
     });
+
     const data = await res.json();
-    if (res.status !== 200) {
-      alert(data.error || "Failed to update project.");
+
+    if (!res.ok) {
+      alert(data?.error || "Failed to update project.");
       closeFunc();
       return;
     }
+
     alert("Project updated successfully!");
     const updatedChangeMap = new Map(changeMap);
     updatedChangeMap.set("EntryId", project.id.toString());
@@ -138,11 +179,14 @@ export default function EditProject({
       <button
         onClick={() => handleCloseEvent(changeMap)}
         className="edit-close-btn"
+        type="button"
       >
         &times;
       </button>
+
       <h2>Edit Project</h2>
-      <form className="edit-project-form" onSubmit={(e) => handleSubmit(e)}>
+
+      <form className="edit-project-form" onSubmit={handleSubmit}>
         <section>
           <label htmlFor="project-title">Project Title:</label>
           <input
@@ -178,7 +222,7 @@ export default function EditProject({
         </section>
 
         <section>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
@@ -189,7 +233,7 @@ export default function EditProject({
         </section>
 
         <section>
-          <label>Major:</label>
+          <label htmlFor="course-number">Major:</label>
           <input
             type="text"
             id="course-number"
@@ -213,14 +257,14 @@ export default function EditProject({
 
                 <input
                   type="text"
-                  value={majors[index] || ""}
+                  value={majors[index] ?? ""}
                   onChange={(e) => updateMajor(index, e.target.value)}
                   placeholder="Enter member major"
                 />
 
                 <input
                   type="text"
-                  value={photos[index] || ""}
+                  value={photos[index] ?? ""}
                   onChange={(e) => updatePhoto(index, e.target.value)}
                   placeholder="Enter member photo URL"
                 />
@@ -229,23 +273,21 @@ export default function EditProject({
                   type="button"
                   onClick={() => removeMember(index)}
                   className="remove-member-btn"
+                  aria-label="Remove member"
                 >
                   ×
                 </button>
               </div>
             ))}
-            <button
-              type="button"
-              onClick={addMember}
-              className="add-member-btn"
-            >
+
+            <button type="button" onClick={addMember} className="add-member-btn">
               + Add Member
             </button>
           </div>
         </section>
 
         <section>
-          <label>Video Link:</label>
+          <label htmlFor="video-link">Video Link:</label>
           <input
             type="url"
             id="video-link"
@@ -257,13 +299,12 @@ export default function EditProject({
 
         <section className="form-buttons">
           <button type="submit" className="save-btn">
-            <span
-              style={{ color: "gold", fontWeight: "bold", padding: "0.5rem" }}
-            >
+            <span style={{ color: "gold", fontWeight: "bold", padding: "0.5rem" }}>
               {changeMap.size}
             </span>
             Save Changes
           </button>
+
           <span>
             <button
               type="button"
@@ -278,3 +319,4 @@ export default function EditProject({
     </div>
   );
 }
+
