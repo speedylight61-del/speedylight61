@@ -15,6 +15,18 @@ export default function EditProject({
     ? project.teamMemberNames.split(", ")
     : [];
   const [members, setMembers] = useState(initialMembers);
+
+  // ADDED: majors + photos support (kept optional for older entries)
+  const initialMajors = project.teamMemberMajors
+    ? project.teamMemberMajors.split(", ")
+    : [];
+  const [majors, setMajors] = useState(initialMajors);
+
+  const initialPhotos = project.teamMemberPhotos
+    ? project.teamMemberPhotos.split(", ")
+    : [];
+  const [photos, setPhotos] = useState(initialPhotos);
+
   const [changeMap, setChangeMap] = useState<Map<string, string>>(new Map());
   const { isSignedIn, isTokenValid, token } = useAuth();
   const navigate = useNavigate();
@@ -23,6 +35,7 @@ export default function EditProject({
       navigate("/admin");
     }
   }, [isSignedIn, isTokenValid, navigate, token]);
+
   const updateChangeMap = (key: string, value: string) => {
     setChangeMap((prev) => {
       const newMap = new Map(prev);
@@ -41,6 +54,9 @@ export default function EditProject({
 
   const addMember = () => {
     setMembers([...members, ""]);
+    // ADDED: keep arrays aligned
+    setMajors([...majors, ""]);
+    setPhotos([...photos, ""]);
   };
 
   const updateMember = (index: number, value: string) => {
@@ -50,10 +66,35 @@ export default function EditProject({
     updateChangeMap("teamMemberNames", newMembers.join(", "));
   };
 
+  // ADDED: update major per member
+  const updateMajor = (index: number, value: string) => {
+    const newMajors = [...majors];
+    newMajors[index] = value;
+    setMajors(newMajors);
+    updateChangeMap("teamMemberMajors", newMajors.join(", "));
+  };
+
+  // ADDED: update photo per member
+  const updatePhoto = (index: number, value: string) => {
+    const newPhotos = [...photos];
+    newPhotos[index] = value;
+    setPhotos(newPhotos);
+    updateChangeMap("teamMemberPhotos", newPhotos.join(", "));
+  };
+
   const removeMember = (index: number) => {
     const newMembers = members.filter((_, i) => i !== index);
     setMembers(newMembers);
     updateChangeMap("teamMemberNames", newMembers.join(", "));
+
+    // ADDED: keep arrays aligned
+    const newMajors = majors.filter((_, i) => i !== index);
+    setMajors(newMajors);
+    updateChangeMap("teamMemberMajors", newMajors.join(", "));
+
+    const newPhotos = photos.filter((_, i) => i !== index);
+    setPhotos(newPhotos);
+    updateChangeMap("teamMemberPhotos", newPhotos.join(", "));
   };
 
   const handleCloseEvent = (changes?: Map<string, string>) => {
@@ -99,7 +140,6 @@ export default function EditProject({
     updatedChangeMap.set("EntryId", project.id.toString());
     // Pass the changes back to the parent
     closeFunc(updatedChangeMap);
-    
   };
 
   return (
@@ -179,6 +219,23 @@ export default function EditProject({
                   onChange={(e) => updateMember(index, e.target.value)}
                   placeholder="Enter member name"
                 />
+
+                {/* ADDED: major per member */}
+                <input
+                  type="text"
+                  value={majors[index] || ""}
+                  onChange={(e) => updateMajor(index, e.target.value)}
+                  placeholder="Enter member major"
+                />
+
+                {/* ADDED: photo url per member */}
+                <input
+                  type="text"
+                  value={photos[index] || ""}
+                  onChange={(e) => updatePhoto(index, e.target.value)}
+                  placeholder="Enter member photo URL"
+                />
+
                 <button
                   type="button"
                   onClick={() => removeMember(index)}
