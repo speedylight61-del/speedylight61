@@ -16,7 +16,6 @@ export default function EditProject({
     : [];
   const [members, setMembers] = useState(initialMembers);
 
-  // ADDED: majors + photos support (kept optional for older entries)
   const initialMajors = project.teamMemberMajors
     ? project.teamMemberMajors.split(", ")
     : [];
@@ -35,7 +34,6 @@ export default function EditProject({
       navigate("/admin");
     }
   }, [isSignedIn, isTokenValid, navigate, token]);
-
   const updateChangeMap = (key: string, value: string) => {
     setChangeMap((prev) => {
       const newMap = new Map(prev);
@@ -54,7 +52,6 @@ export default function EditProject({
 
   const addMember = () => {
     setMembers([...members, ""]);
-    // ADDED: keep arrays aligned
     setMajors([...majors, ""]);
     setPhotos([...photos, ""]);
   };
@@ -66,7 +63,6 @@ export default function EditProject({
     updateChangeMap("teamMemberNames", newMembers.join(", "));
   };
 
-  // ADDED: update major per member
   const updateMajor = (index: number, value: string) => {
     const newMajors = [...majors];
     newMajors[index] = value;
@@ -74,7 +70,6 @@ export default function EditProject({
     updateChangeMap("teamMemberMajors", newMajors.join(", "));
   };
 
-  // ADDED: update photo per member
   const updatePhoto = (index: number, value: string) => {
     const newPhotos = [...photos];
     newPhotos[index] = value;
@@ -87,7 +82,6 @@ export default function EditProject({
     setMembers(newMembers);
     updateChangeMap("teamMemberNames", newMembers.join(", "));
 
-    // ADDED: keep arrays aligned
     const newMajors = majors.filter((_, i) => i !== index);
     setMajors(newMajors);
     updateChangeMap("teamMemberMajors", newMajors.join(", "));
@@ -99,7 +93,6 @@ export default function EditProject({
 
   const handleCloseEvent = (changes?: Map<string, string>) => {
     if (changeMap.size > 0) {
-      //create a custom confirm dialog later
       if (
         !window.confirm(
           "You have unsaved changes. Are you sure you want to close?"
@@ -135,10 +128,8 @@ export default function EditProject({
       return;
     }
     alert("Project updated successfully!");
-    // Create updated changeMap with id for identification
     const updatedChangeMap = new Map(changeMap);
     updatedChangeMap.set("EntryId", project.id.toString());
-    // Pass the changes back to the parent
     closeFunc(updatedChangeMap);
   };
 
@@ -220,7 +211,6 @@ export default function EditProject({
                   placeholder="Enter member name"
                 />
 
-                {/* ADDED: major per member */}
                 <input
                   type="text"
                   value={majors[index] || ""}
@@ -228,7 +218,6 @@ export default function EditProject({
                   placeholder="Enter member major"
                 />
 
-                {/* ADDED: photo url per member */}
                 <input
                   type="text"
                   value={photos[index] || ""}
