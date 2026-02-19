@@ -8,6 +8,8 @@ export interface ProjectObj {
   sponsor: string;
   NumberOfMembers: number;
   teamMemberNames: string;
+  teamMemberMajors?: string;
+  teamMemberPhotos?: string;
   CourseNumber: string;
   Demo: string;  
   Power: string; 
