@@ -128,6 +128,7 @@ const Survey: React.FC = () => {
             response.json()).then((data) =>
             setProjects(data)).catch((error) => 
             console.error('Error fetching projects:', error));
+		setProjects([]);
     }, []);
 
     useEffect(() => {
