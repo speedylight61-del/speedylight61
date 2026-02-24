@@ -19,7 +19,7 @@ interface FormData {
   sponsor: string;
   numberOfTeamMembers: string;
   teamMemberNames: string;
-  teamMemberMajors: string;
+teamMemberMajors: string;
   major: string;
   demo: string;
   power ? : string;
@@ -40,7 +40,7 @@ interface FormErrors {
   sponsor: string;
   numberOfTeamMembers: string;
   teamMemberNames: string;
-  teamMemberMajors: string;
+teamMemberMajors: string;
   major: string;
   demo: string;
   power: string;
@@ -67,7 +67,7 @@ const Survey: React.FC = () => {
         sponsor: "",
         numberOfTeamMembers: "",
         teamMemberNames: "",
-        teamMemberMajors: "",
+	teamMemberMajors: "",
         major: "",
         demo: "",
         power: "",
@@ -87,7 +87,7 @@ const Survey: React.FC = () => {
         sponsor: "",
         numberOfTeamMembers: "",
         teamMemberNames: "",
-        teamMemberMajors: "",
+	teamMemberMajors: "",
         major: "",
         demo: "",
         power: "",
@@ -109,9 +109,9 @@ const Survey: React.FC = () => {
     const [recaptchaToken, setRecaptchaToken] = useState<string>("");
     const recaptchaRef = useRef<HTMLDivElement>(null);
     const recaptchaWidgetId = useRef<number | null>(null);
-
-    const [memberNames, setMemberNames] = useState<string[]>([""]);
-    const [memberMajors, setMemberMajors] = useState<string[]>([""]);
+const [memberNames, setMemberNames] = useState<string[]>([""]);
+const [memberMajors, setMemberMajors] = useState<string[]>([""]);
+const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
 
     const navigate = useNavigate();
 
@@ -129,35 +129,29 @@ const Survey: React.FC = () => {
             setProjects(data)).catch((error) => 
             console.error('Error fetching projects:', error));
     }, []);
+	useEffect(() => {
+  const n = parseInt(formData.numberOfTeamMembers || "0", 10);
+  if (!Number.isFinite(n) || n <= 0) return;
 
-    useEffect(() => {
-      const n = parseInt(formData.numberOfTeamMembers || "0", 10);
-      if (!Number.isFinite(n) || n <= 0) return;
+  setMemberNames((prev) => {
+    const next = [...prev];
+    while (next.length < n) next.push("");
+    return next.slice(0, n);
+  });
 
-      setMemberNames((prev) => {
-        const next = [...prev];
-        while (next.length < n) next.push("");
-        return next.slice(0, n);
-      });
+  setMemberMajors((prev) => {
+    const next = [...prev];
+    while (next.length < n) next.push("");
+    return next.slice(0, n);
+  });
 
-      setMemberMajors((prev) => {
-        const next = [...prev];
-        while (next.length < n) next.push("");
-        return next.slice(0, n);
-      });
-    }, [formData.numberOfTeamMembers]);
 
-    useEffect(() => {
-      const namesStr = memberNames.map(s => (s ?? "").trim()).filter(Boolean).join(", ");
-      const majorsStr = memberMajors.map(s => (s ?? "").trim()).filter(Boolean).join(", ");
-
-      setFormData((prev) => ({
-        ...prev,
-        teamMemberNames: namesStr,
-        teamMemberMajors: majorsStr,
-      }));
-    }, [memberNames, memberMajors]);
-
+  setMemberPhotoPaths((prev) => {
+    const next = [...prev];
+    while (next.length < n) next.push("");
+    return next.slice(0, n);
+  });
+}, [formData.numberOfTeamMembers]);
     // Load reCAPTCHA script
     useEffect(() => {
         const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "6LeRpgcsAAAAAIV7UOuvWeJfQTUlzizmRKhMWn3J";
@@ -275,7 +269,7 @@ const Survey: React.FC = () => {
             }
         }
     };
- }, []);
+}, []);
 
 
     const handleChange = (
@@ -456,7 +450,6 @@ const Survey: React.FC = () => {
         sponsor,
         numberOfTeamMembers,
         teamMemberNames,
-        teamMemberMajors,
         major,
         demo,
         nda,
@@ -473,7 +466,6 @@ const Survey: React.FC = () => {
         sponsor: !sponsor ? "Please enter the name of your sponsor/mentor." : "",
         numberOfTeamMembers: !numberOfTeamMembers ? "Please enter the number of team members." : "",
         teamMemberNames: !teamMemberNames ? "Please enter the full names of all team members, including yourself, separated by commas." : "",
-        teamMemberMajors: !teamMemberMajors ? "Please enter each team member's major, separated by commas." : "",
         major: !major ? "Please select a course number." : "",
         demo: !demo ? "Please specify if your group will be bringing a demo." : "",
         power: "",
@@ -641,47 +633,6 @@ const Survey: React.FC = () => {
               <p className="error-message">{errors.numberOfTeamMembers}</p>
             )}
           </div>
-
-          <div className="form-box">
-            <label>Team Members (Individual Entries):</label>
-            {memberNames.map((_, idx) => (
-              <div key={idx} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginTop: "10px" }}>
-                <div>
-                  <label htmlFor={`memberName_${idx}`}>Member {idx + 1} Name:</label>
-                  <input
-                    type="text"
-                    id={`memberName_${idx}`}
-                    value={memberNames[idx] ?? ""}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      setMemberNames((prev) => prev.map((v, i) => (i === idx ? val : v)));
-                      setErrors((prev) => ({ ...prev, teamMemberNames: "" }));
-                    }}
-                  />
-                </div>
-                <div>
-                  <label htmlFor={`memberMajor_${idx}`}>Member {idx + 1} Major:</label>
-                  <input
-                    type="text"
-                    id={`memberMajor_${idx}`}
-                    value={memberMajors[idx] ?? ""}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      setMemberMajors((prev) => prev.map((v, i) => (i === idx ? val : v)));
-                      setErrors((prev) => ({ ...prev, teamMemberMajors: "" }));
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-            {errors.teamMemberNames && (
-              <p className="error-message">{errors.teamMemberNames}</p>
-            )}
-            {errors.teamMemberMajors && (
-              <p className="error-message">{errors.teamMemberMajors}</p>
-            )}
-          </div>
-
           <div className="form-box">
             <label htmlFor="teamMemberNames">Team Members' Full Names:</label>
             <textarea
