@@ -633,6 +633,31 @@ const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
               <p className="error-message">{errors.numberOfTeamMembers}</p>
             )}
           </div>
+
+{parseInt(formData.numberOfTeamMembers || "0", 10) > 0 && (
+  <div className="form-box">
+    <label>Individual Team Members (Name + Major)</label>
+
+    {memberNames.map((_, idx) => (
+      <div key={idx} style={{ marginBottom: "12px" }}>
+        <input
+          type="text"
+          placeholder={`Member ${idx + 1} full name`}
+          value={memberNames[idx] || ""}
+          onChange={(e) => handleMemberNameChange(idx, e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder={`Member ${idx + 1} major`}
+          value={memberMajors[idx] || ""}
+          onChange={(e) => handleMemberMajorChange(idx, e.target.value)}
+          style={{ marginTop: "8px" }}
+        />
+      </div>
+    ))}
+  </div>
+)}
           <div className="form-box">
             <label htmlFor="teamMemberNames">Team Members' Full Names:</label>
             <textarea
