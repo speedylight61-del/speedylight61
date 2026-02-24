@@ -10,7 +10,6 @@ declare global {
 }
 
 
-
 interface FormData {
   email: string;
   name: string;
@@ -518,6 +517,21 @@ setMemberPhotoFiles((prev) => {
         firstErrorElement.scrollIntoView({ behavior: "smooth" });
       }
     };
+	const handleMemberNameChange = (idx: number, value: string) => {
+  setMemberNames((prev) => {
+    const next = [...prev];
+    next[idx] = value;
+    return next;
+  });
+};
+
+const handleMemberMajorChange = (idx: number, value: string) => {
+  setMemberMajors((prev) => {
+    const next = [...prev];
+    next[idx] = value;
+    return next;
+  });
+};
     const handleSuccessfulSubmission = () => {
         setFormData(initialFormData);
         setSelectedFile(undefined);
