@@ -109,9 +109,12 @@ const Survey: React.FC = () => {
     const [recaptchaToken, setRecaptchaToken] = useState<string>("");
     const recaptchaRef = useRef<HTMLDivElement>(null);
     const recaptchaWidgetId = useRef<number | null>(null);
-const [memberNames, setMemberNames] = useState<string[]>([""]);
-const [memberMajors, setMemberMajors] = useState<string[]>([""]);
-const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
+	const [memberPhotoFiles, setMemberPhotoFiles] = useState<(File | null)[]>([]);
+	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
+	const [memberNames, setMemberNames] = useState<string[]>([""]);
+	const [memberMajors, setMemberMajors] = useState<string[]>([""]);
+	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>
+([]);
 
     const navigate = useNavigate();
 
@@ -145,6 +148,11 @@ const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
     return next.slice(0, n);
   });
 
+setMemberPhotoFiles((prev) => {
+  const next = [...prev];
+  while (next.length < n) next.push(null);
+  return next.slice(0, n);
+});
 
   setMemberPhotoPaths((prev) => {
     const next = [...prev];
@@ -529,6 +537,14 @@ const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
         navigate("/");
     };
     
+const handleMemberPhotoFile = (idx: number, file: File | null) => {
+  setMemberPhotoFiles((prev) => {
+    const next = [...prev];
+    next[idx] = file;
+    return next;
+  });
+};
+
     return (
     <div className="content-container">
       <div className="form-container">
@@ -654,6 +670,22 @@ const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
           onChange={(e) => handleMemberMajorChange(idx, e.target.value)}
           style={{ marginTop: "8px" }}
         />
+<label style={{ display: "block", marginTop: "8px" }}>
+      Member {idx + 1} Photo:
+    </label>
+
+    <input
+      type="file"
+      accept="image/*"
+      onChange={(e) => handleMemberPhotoFile(idx, e.target.files?.[0] || null)}
+    />
+
+    {memberPhotoFiles[idx] && (
+      <small style={{ display: "block", marginTop: "4px" }}>
+        Selected: {memberPhotoFiles[idx]!.name}
+      </small>
+    )}
+
       </div>
     ))}
   </div>
