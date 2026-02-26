@@ -18,7 +18,6 @@ interface FormData {
   numberOfTeamMembers: string;
   teamMemberNames: string;
 teamMemberMajors: string;
-  major: string;
   demo: string;
   power ? : string;
   nda: string;
@@ -38,7 +37,6 @@ interface FormErrors {
   sponsor: string;
   numberOfTeamMembers: string;
 teamMemberMajors: string;
-  major: string;
   demo: string;
   power: string;
   nda: string;
@@ -64,7 +62,6 @@ const Survey: React.FC = () => {
         sponsor: "",
         numberOfTeamMembers: "",
 	teamMemberMajors: "",
-        major: "",
         demo: "",
         power: "",
         nda: "",
@@ -84,7 +81,6 @@ const Survey: React.FC = () => {
         numberOfTeamMembers: "",
         teamMemberNames: "",
 	teamMemberMajors: "",
-        major: "",
         demo: "",
         power: "",
         nda: "",
@@ -470,7 +466,6 @@ formData.teamMemberMajors = memberMajors.join(", ");
         projectDescription: !projectDescription ? "Please enter a project description." : "",
         sponsor: !sponsor ? "Please enter the name of your sponsor/mentor." : "",
         numberOfTeamMembers: !numberOfTeamMembers ? "Please enter the number of team members." : "",
-        major: !major ? "Please select a course number." : "",
         demo: !demo ? "Please specify if your group will be bringing a demo." : "",
         power: "",
         nda: !nda ? "Please specify if your group signed an NDA or IP." : "",
@@ -689,6 +684,9 @@ const handleMemberPhotoFile = (idx: number, file: File | null) => {
   <option value="Informatics">Informatics</option>
   <option value="Interdisciplinary">Interdisciplinary</option>
 </select>
+<small style={{ display: "block", marginTop: "4px" }}>
+  * Note: Select Interdisciplinary if your team members are in different majors
+</small>  
 <label style={{ display: "block", marginTop: "8px" }}>
       Member {idx + 1} Photo:
     </label>
@@ -710,42 +708,6 @@ const handleMemberPhotoFile = (idx: number, file: File | null) => {
   </div>
 )}
 
-          <div className="form-box">
-            <label htmlFor="major">Major:</label>
-            <select
-              name="major"
-              id="major"
-              value={formData.major}
-              onChange={handleChange}
-            >
-              <option value="">Select a major</option>
-              <option value="computer-science">Computer Science</option>
-              <option value="computer-systems-engineering">
-                Computer Systems Engineering
-              </option>
-              <option value="biomedical-engineering">
-                Biomedical Engineering
-              </option>
-              <option value="mechanical-engineering">
-                Mechanical Engineering
-              </option>
-              <option value="electrical-engineering">
-                Electrical Engineering
-              </option>
-              <option value="industrial-engineering">
-                Industrial Engineering
-              </option>
-              <option value="informatics">Informatics</option>
-              <option value="interdisciplinary">Interdisciplinary</option>
-            </select>
-            <small>
-              * Note: Select Interdisciplinary if your team members are in
-              different majors
-            </small>
-            {errors.major && (
-              <p className="error-message">{errors.major}</p>
-            )}
-          </div>
           <div className="form-box">
       <label htmlFor="attendance">Are you online or in-person?</label>
       <select
