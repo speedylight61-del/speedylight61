@@ -110,7 +110,6 @@ const Survey: React.FC = () => {
 	const [memberPhotoFiles, setMemberPhotoFiles] = useState<(File | null)[]>([]);
 	const [memberNames, setMemberNames] = useState<string[]>([""]);
 	const [memberMajors, setMemberMajors] = useState<string[]>([""]);
-	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>
 ([]);
 
     const navigate = useNavigate();
@@ -303,7 +302,7 @@ setMemberPhotoFiles((prev) => {
         }
       } else {
         // Handling non-file inputs
-        setFormData({ ...formData, [name]: value });
+setFormData((prev) => ({ ...prev, [name]: value }));
     
         if (name === "demo" && value === "no") {
           setFormData((prevFormData) => ({ ...prevFormData, power: "" }));
@@ -319,7 +318,7 @@ setMemberPhotoFiles((prev) => {
       }
     
       // Clear error for this field
-      setErrors({ ...errors, [name]: "" });
+      setErrors((prev) => ({ ...prev, [name]: "" }));
       console.log(`Field: ${name}, Value: ${value}`);
     };
 
@@ -516,6 +515,21 @@ setMemberPhotoFiles((prev) => {
         firstErrorElement.scrollIntoView({ behavior: "smooth" });
       }
     };
+	const handleMemberNameChange = (idx: number, value: string) => {
+  setMemberNames((prev) => {
+    const next = [...prev];
+    next[idx] = value;
+    return next;
+  });
+};
+
+const handleMemberMajorChange = (idx: number, value: string) => {
+  setMemberMajors((prev) => {
+    const next = [...prev];
+    next[idx] = value;
+    return next;
+  });
+};
     const handleSuccessfulSubmission = () => {
         setFormData(initialFormData);
         setSelectedFile(undefined);
