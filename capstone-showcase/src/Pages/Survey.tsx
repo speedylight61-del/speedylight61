@@ -9,8 +9,6 @@ declare global {
   }
 }
 
-
-
 interface FormData {
   email: string;
   name: string;
@@ -110,7 +108,6 @@ const Survey: React.FC = () => {
     const recaptchaRef = useRef<HTMLDivElement>(null);
     const recaptchaWidgetId = useRef<number | null>(null);
 	const [memberPhotoFiles, setMemberPhotoFiles] = useState<(File | null)[]>([]);
-	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
 	const [memberNames, setMemberNames] = useState<string[]>([""]);
 	const [memberMajors, setMemberMajors] = useState<string[]>([""]);
 	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>
