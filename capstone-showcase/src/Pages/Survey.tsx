@@ -303,7 +303,7 @@ setMemberPhotoFiles((prev) => {
         }
       } else {
         // Handling non-file inputs
-        setFormData({ ...formData, [name]: value });
+setFormData((prev) => ({ ...prev, [name]: value }));
     
         if (name === "demo" && value === "no") {
           setFormData((prevFormData) => ({ ...prevFormData, power: "" }));
@@ -319,7 +319,7 @@ setMemberPhotoFiles((prev) => {
       }
     
       // Clear error for this field
-      setErrors({ ...errors, [name]: "" });
+      setErrors((prev) => ({ ...prev, [name]: "" }));
       console.log(`Field: ${name}, Value: ${value}`);
     };
 
