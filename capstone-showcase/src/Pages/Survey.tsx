@@ -37,7 +37,6 @@ interface FormErrors {
   projectDescription: string;
   sponsor: string;
   numberOfTeamMembers: string;
-  teamMemberNames: string;
 teamMemberMajors: string;
   major: string;
   demo: string;
@@ -64,7 +63,6 @@ const Survey: React.FC = () => {
         projectDescription: "",
         sponsor: "",
         numberOfTeamMembers: "",
-        teamMemberNames: "",
 	teamMemberMajors: "",
         major: "",
         demo: "",
@@ -472,7 +470,6 @@ formData.teamMemberMajors = memberMajors.join(", ");
         projectDescription: !projectDescription ? "Please enter a project description." : "",
         sponsor: !sponsor ? "Please enter the name of your sponsor/mentor." : "",
         numberOfTeamMembers: !numberOfTeamMembers ? "Please enter the number of team members." : "",
-        teamMemberNames: !teamMemberNames ? "Please enter the full names of all team members, including yourself, separated by commas." : "",
         major: !major ? "Please select a course number." : "",
         demo: !demo ? "Please specify if your group will be bringing a demo." : "",
         power: "",
@@ -712,18 +709,7 @@ const handleMemberPhotoFile = (idx: number, file: File | null) => {
     ))}
   </div>
 )}
-          <div className="form-box">
-            <label htmlFor="teamMemberNames">Team Members' Full Names:</label>
-            <textarea
-              name="teamMemberNames"
-              id="teamMemberNames"
-              value={formData.teamMemberNames}
-              onChange={handleChange}
-            />
-            {errors.teamMemberNames && (
-              <p className="error-message">{errors.teamMemberNames}</p>
-            )}
-          </div>
+
           <div className="form-box">
             <label htmlFor="major">Major:</label>
             <select
