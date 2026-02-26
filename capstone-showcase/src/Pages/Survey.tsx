@@ -112,7 +112,6 @@ const Survey: React.FC = () => {
 	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
 	const [memberNames, setMemberNames] = useState<string[]>([""]);
 	const [memberMajors, setMemberMajors] = useState<string[]>([""]);
-	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>
 ([]);
 
     const navigate = useNavigate();
