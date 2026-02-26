@@ -108,9 +108,9 @@ const Survey: React.FC = () => {
     const recaptchaRef = useRef<HTMLDivElement>(null);
     const recaptchaWidgetId = useRef<number | null>(null);
 	const [memberPhotoFiles, setMemberPhotoFiles] = useState<(File | null)[]>([]);
+	const [memberPhotoPaths, setMemberPhotoPaths] = useState<string[]>([]);
 	const [memberNames, setMemberNames] = useState<string[]>([""]);
 	const [memberMajors, setMemberMajors] = useState<string[]>([""]);
-([]);
 
     const navigate = useNavigate();
 
@@ -675,13 +675,21 @@ const handleMemberPhotoFile = (idx: number, file: File | null) => {
           onChange={(e) => handleMemberNameChange(idx, e.target.value)}
         />
 
-        <input
-          type="text"
-          placeholder={`Member ${idx + 1} major`}
-          value={memberMajors[idx] || ""}
-          onChange={(e) => handleMemberMajorChange(idx, e.target.value)}
-          style={{ marginTop: "8px" }}
-        />
+        <select
+  value={memberMajors[idx] || ""}
+  onChange={(e) => handleMemberMajorChange(idx, e.target.value)}
+  style={{ marginTop: "8px" }}
+>
+  <option value="">Select Major</option>
+  <option value="Computer Science">Computer Science</option>
+  <option value="Computer Systems Engineering">Computer Systems Engineering</option>
+  <option value="Biomedical Engineering">Biomedical Engineering</option>
+  <option value="Mechanical Engineering">Mechanical Engineering</option>
+  <option value="Electrical Engineering">Electrical Engineering</option>
+  <option value="Industrial Engineering">Industrial Engineering</option>
+  <option value="Informatics">Informatics</option>
+  <option value="Interdisciplinary">Interdisciplinary</option>
+</select>
 <label style={{ display: "block", marginTop: "8px" }}>
       Member {idx + 1} Photo:
     </label>
