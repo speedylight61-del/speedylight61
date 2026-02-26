@@ -360,6 +360,8 @@ setFormData((prev) => ({ ...prev, [name]: value }));
 
 
         console.log("here1")
+		  formData.teamMemberNames = memberNames.join(", ");
+formData.teamMemberMajors = memberMajors.join(", ");
         let posterPath = "";
         let teamImagePaths: string[] = [];
     
